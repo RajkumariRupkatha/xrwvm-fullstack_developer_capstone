@@ -1,68 +1,180 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <!-- Link the style sheet here -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>About Us | Best Cars</title>
+
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
 </head>
-<div>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light"
+       style="background-color: darkturquoise; min-height: 1in;">
     <div class="container-fluid">
+
       <h2 style="padding-right: 5%;">Dealerships</h2>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+
+      <button class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarText"
+              aria-controls="navbarText"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
           <li class="nav-item">
-            <a class="nav-link" style="font-size: larger;" aria-current="page" href="/">Home</a>
+            <a class="nav-link"
+               style="font-size: larger;"
+               href="/">
+              Home
+            </a>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link active" style="font-size: larger;" href="/about">About Us</a>
+            <a class="nav-link active"
+               style="font-size: larger;"
+               aria-current="page"
+               href="/about">
+              About Us
+            </a>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" style="font-size: larger;" href="/contact">Contact Us</a>
+            <a class="nav-link"
+               style="font-size: larger;"
+               href="/contact">
+              Contact Us
+            </a>
           </li>
+
         </ul>
       </div>
     </div>
   </nav>
-  
-    <div class="card" style="width: 80%;margin: auto; margin-top:5%;">
-      <div class="banner" name="about-header">
-      <!-- Insert header information here -->
-      </div>
-      <div style="display: flex;flex-direction: row; margin:auto">
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person1</p>
-          <p>Person1 Title</p>
-          <p class="card-text">Some text that explains the person1 in about 2 short sentences</p>
-          <p>person1@example.com</p>
-        </div>
+
+  <main>
+    <div class="card shadow"
+         style="width: 80%; margin: 5% auto; padding-bottom: 30px;">
+
+      <div class="banner text-center p-4"
+           name="about-header"
+           style="background-color: #f2fafa;">
+
+        <h1>About Us</h1>
+
+        <p class="lead">
+          Welcome to Best Cars dealership, home to the best cars in North America.
+          We deal in selling domestic and imported cars at reasonable prices.
+        </p>
+
+        <p>
+          Our mission is to make purchasing a vehicle simple, transparent, and
+          enjoyable. We connect customers with trusted dealerships and provide
+          helpful reviews so every buyer can make an informed decision.
+        </p>
+
       </div>
 
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person2</p>
-          <p>Person2 Title</p>
-          <p class="card-text">Some text that explains the person2 in about 2 short sentences</p>
-          <p>person2@example.com</p>
-        </div>
-      </div>
+      <div class="container mt-4">
 
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person3</p>
-          <p>Person3 Title</p>
-          <p class="card-text">Some text that explains the person3 in about 2 short sentences</p>
-          <p>person3@example.com</p>
+        <h2 class="text-center mb-4">Meet Our Leadership Team</h2>
+
+        <div class="row justify-content-center">
+
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+              <img class="card-img-top"
+                   src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80"
+                   alt="Michael Anderson, Chief Executive Officer"
+                   style="height: 300px; object-fit: cover;">
+
+              <div class="card-body text-center">
+                <h3 class="title">Michael Anderson</h3>
+                <h5>Chief Executive Officer</h5>
+
+                <p class="card-text">
+                  Michael has more than 15 years of experience in automotive
+                  sales and customer service. He leads Best Cars with a focus
+                  on honesty, quality, and customer satisfaction.
+                </p>
+
+                <p>
+                  <a href="mailto:michael.anderson@bestcars.com">
+                    michael.anderson@bestcars.com
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+              <img class="card-img-top"
+                   src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+                   alt="Sarah Johnson, Sales Director"
+                   style="height: 300px; object-fit: cover;">
+
+              <div class="card-body text-center">
+                <h3 class="title">Sarah Johnson</h3>
+                <h5>Sales Director</h5>
+
+                <p class="card-text">
+                  Sarah manages our dealership network and helps customers find
+                  vehicles that fit their needs and budget. She is committed to
+                  providing a professional and pressure-free sales experience.
+                </p>
+
+                <p>
+                  <a href="mailto:sarah.johnson@bestcars.com">
+                    sarah.johnson@bestcars.com
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+              <img class="card-img-top"
+                   src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=600&q=80"
+                   alt="David Thompson, Customer Experience Manager"
+                   style="height: 300px; object-fit: cover;">
+
+              <div class="card-body text-center">
+                <h3 class="title">David Thompson</h3>
+                <h5>Customer Experience Manager</h5>
+
+                <p class="card-text">
+                  David works closely with customers and dealerships to ensure
+                  every interaction meets our service standards. He also helps
+                  resolve customer concerns and improve the buying experience.
+                </p>
+
+                <p>
+                  <a href="mailto:david.thompson@bestcars.com">
+                    david.thompson@bestcars.com
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
-    </div>
-    </div>
-    
-</div>
+  </main>
 
+  <script src="/static/bootstrap.bundle.min.js"></script>
+
+</body>
 </html>
