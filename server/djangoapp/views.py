@@ -1,13 +1,3 @@
-# Uncomment the required imports before adding the code
-
-# from django.shortcuts import render
-# from django.http import HttpResponseRedirect, HttpResponse
-# from django.contrib.auth.models import User
-# from django.shortcuts import get_object_or_404, render, redirect
-# from django.contrib.auth import logout
-# from django.contrib import messages
-# from datetime import datetime
-
 import json
 import logging
 
@@ -17,24 +7,27 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .models import CarMake, CarModel
 from .populate import initiate
+from .restapis import (
+    analyze_review_sentiments,
+    get_request,
+    post_review,
+)
 
 
-# Get an instance of a logger
 logger = logging.getLogger(__name__)
 
 
-# Create your views here.
-
-# Create a `login_request` view to handle sign in request
 @csrf_exempt
 def login_user(request):
-    # Get username and password from request body
     data = json.loads(request.body)
     username = data["userName"]
     password = data["password"]
 
-    # Check whether the provided credentials can be authenticated
-    user = authenticate(username=username, password=password)
+    user = authenticate(
+        username=username,
+        password=password,
+    )
+
     response_data = {"userName": username}
 
     if user is not None:
@@ -47,44 +40,97 @@ def login_user(request):
     return JsonResponse(response_data)
 
 
-# Create a `logout_request` view to handle sign out request
-# def logout_request(request):
-#     ...
+def get_dealerships(request, state="All"):
+    if state == "All":
+        endpoint = "/fetchDealers"
+    else:
+        endpoint = "/fetchDealers/" + state
+
+    dealerships = get_request(endpoint)
+
+    return JsonResponse(
+        {
+            "status": 200,
+            "dealers": dealerships,
+        }
+    )
 
 
-# Create a `registration` view to handle sign up request
-# @csrf_exempt
-# def registration(request):
-#     ...
+def get_dealer_details(request, dealer_id):
+    if dealer_id:
+        endpoint = "/fetchDealer/" + str(dealer_id)
+        dealership = get_request(endpoint)
+
+        return JsonResponse(
+            {
+                "status": 200,
+                "dealer": dealership,
+            }
+        )
+
+    return JsonResponse(
+        {
+            "status": 400,
+            "message": "Bad Request",
+        }
+    )
 
 
-# Update the `get_dealerships` view to render the index page with
-# a list of dealerships
-# def get_dealerships(request):
-#     ...
+def get_dealer_reviews(request, dealer_id):
+    if dealer_id:
+        endpoint = "/fetchReviews/dealer/" + str(dealer_id)
+        reviews = get_request(endpoint)
+
+        for review_detail in reviews:
+            response = analyze_review_sentiments(
+                review_detail["review"]
+            )
+            print(response)
+            review_detail["sentiment"] = response["sentiment"]
+
+        return JsonResponse(
+            {
+                "status": 200,
+                "reviews": reviews,
+            }
+        )
+
+    return JsonResponse(
+        {
+            "status": 400,
+            "message": "Bad Request",
+        }
+    )
 
 
-# Create a `get_dealer_reviews` view to render the reviews of a dealer
-# def get_dealer_reviews(request, dealer_id):
-#     ...
+def add_review(request):
+    if request.user.is_anonymous is False:
+        data = json.loads(request.body)
+
+        try:
+            response = post_review(data)
+            print(response)
+            return JsonResponse({"status": 200})
+        except Exception:
+            return JsonResponse(
+                {
+                    "status": 401,
+                    "message": "Error in posting review",
+                }
+            )
+
+    return JsonResponse(
+        {
+            "status": 403,
+            "message": "Unauthorized",
+        }
+    )
 
 
-# Create a `get_dealer_details` view to render the dealer details
-# def get_dealer_details(request, dealer_id):
-#     ...
-
-
-# Create an `add_review` view to submit a review
-# def add_review(request):
-#     ...
-
-
-# Get all car makes and car models
 def get_cars(request):
     count = CarMake.objects.filter().count()
     print(count)
 
-    # Populate the database when no car makes exist
     if count == 0:
         initiate()
 
