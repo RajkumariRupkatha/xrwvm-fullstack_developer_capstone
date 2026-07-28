@@ -103,6 +103,7 @@ def get_dealer_reviews(request, dealer_id):
     )
 
 
+@csrf_exempt
 def add_review(request):
     if request.user.is_anonymous is False:
         data = json.loads(request.body)
